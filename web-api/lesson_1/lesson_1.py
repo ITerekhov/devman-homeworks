@@ -1,11 +1,10 @@
 import requests
 
-url_template = 'https://wttr.in/{}?nTqu&lang=en'
-url_template_rus = 'https://wttr.in/{}?nTqM&lang=ru'
-locations = ['Лондон', 'SVO', 'Череповец']
-for location in locations:
-    if location == 'Череповец':
-        response = requests.get(url_template_rus.format(location))
-    else:
-        response = requests.get(url_template.format(location))
+url = 'https://wttr.in/{}'
+locations = {'Лондон': {'n':'', 'T':'', 'q':'','u':'','lang':'en'},
+            'SVO': {'n':'', 'T':'', 'q':'','M':'','lang':'ru'},
+            'Череповец': {'n':'', 'T':'', 'q':'','M':'','lang':'ru'}
+            }
+for location in locations.keys():
+    response = requests.get(url.format(location), params=locations[location])
     print(response.text)
