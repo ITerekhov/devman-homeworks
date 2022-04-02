@@ -7,4 +7,5 @@ locations = {'Лондон': {'n':'', 'T':'', 'q':'','u':'','lang':'en'},
             }
 for location in locations.keys():
     response = requests.get(url.format(location), params=locations[location])
+    response.raise_for_status()
     print(response.text)
